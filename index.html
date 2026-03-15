@@ -2,103 +2,163 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>Royal Taste Restaurant</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Menu Preview</title>
 
 <style>
+
+html{scroll-behavior:smooth;}
+
 body{
 margin:0;
-background:black;
+font-family:Segoe UI;
+background:#0b0b0b;
 color:white;
-font-family:Arial;
-text-align:center;
-overflow-x:hidden;
 }
 
-/* FIRE CURSOR */
-.spark{
-position:fixed;
-width:6px;
-height:6px;
-background:orange;
-border-radius:50%;
-pointer-events:none;
-animation:fire .6s linear forwards;
-}
-@keyframes fire{
-to{transform:translateY(-30px) scale(0);opacity:0;}
-}
+/* HERO */
 
-/* TITLE */
-h1{
-color:gold;
-text-shadow:0 0 20px gold;
-margin-top:30px;
-}
-
-/* 3D CARD */
-.scene{
-width:260px;
-height:340px;
-margin:40px auto;
-perspective:900px;
-}
-.card{
-width:100%;
-height:100%;
-position:relative;
-transform-style:preserve-3d;
-transition:1s;
-}
-.card:hover{
-transform:rotateY(180deg);
-}
-.face{
-position:absolute;
-width:100%;
-height:100%;
-backface-visibility:hidden;
-border-radius:20px;
-background:rgba(255,255,255,.08);
+.hero{
+height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
+text-align:center;
+background:linear-gradient(270deg,#000,#111,#000);
+background-size:400% 400%;
+animation:bgmove 12s infinite;
+}
+
+@keyframes bgmove{
+0%{background-position:0%}
+50%{background-position:100%}
+100%{background-position:0%}
+}
+
+.hero h1{
+font-size:60px;
+color:gold;
+text-shadow:0 0 30px gold;
+margin:0;
+}
+
+.hero p{
+color:#ccc;
+}
+
+.btn{
+margin-top:25px;
+padding:15px 35px;
+border:none;
+border-radius:40px;
+background:gold;
+cursor:pointer;
+font-size:18px;
+}
+
+/* MENU */
+
+.menu{
+padding:80px 20px;
+text-align:center;
+}
+
+.card{
+max-width:500px;
+margin:auto;
+padding:35px;
+border-radius:25px;
+background:rgba(255,255,255,0.06);
+backdrop-filter:blur(10px);
+box-shadow:0 0 30px rgba(255,215,0,.4);
+}
+
+.section{
+margin-top:25px;
+}
+
+.section h2{
+color:#ffcc70;
+border-bottom:2px solid gold;
+padding-bottom:6px;
+letter-spacing:3px;
+}
+
+.item{
+font-size:22px;
+margin:10px;
+padding:8px;
+border-radius:12px;
+transition:.4s;
+}
+
+.item:hover{
+transform:scale(1.1);
+background:rgba(255,215,0,.2);
 box-shadow:0 0 20px gold;
 }
-.back{transform:rotateY(180deg);}
-
-/* ITEMS */
-.item{margin:6px;font-size:18px;}
 
 /* GALLERY */
-.gallery img{
-width:90px;
-margin:6px;
-border-radius:10px;
-cursor:pointer;
-transition:.3s;
-}
-.gallery img:hover{
-transform:scale(1.1);
-box-shadow:0 0 15px gold;
+
+.gallery{
+padding:70px 20px;
+text-align:center;
 }
 
-/* POPUP */
-.popup{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,.9);
-display:none;
+.images{
+display:flex;
+flex-wrap:wrap;
 justify-content:center;
-align-items:center;
 }
-.popup img{
-width:70%;
+
+.images img{
+width:160px;
+margin:10px;
 border-radius:15px;
+transition:.4s;
+cursor:pointer;
+}
+
+.images img:hover{
+transform:scale(1.1);
+box-shadow:0 0 20px gold;
+}
+
+/* BOOKING */
+
+.booking{
+padding:80px 20px;
+text-align:center;
+}
+
+input,button{
+padding:12px;
+margin:8px;
+border-radius:25px;
+border:none;
+font-size:16px;
+}
+
+button{
+background:linear-gradient(45deg,gold,orange);
+cursor:pointer;
+}
+
+/* FOOTER */
+
+.footer{
+padding:25px;
+text-align:center;
+background:black;
+color:#aaa;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+.hero h1{font-size:40px;}
+.images img{width:120px;}
 }
 
 </style>
@@ -106,54 +166,66 @@ border-radius:15px;
 
 <body>
 
-<h1>✨ ROYAL MENU PREVIEW ✨</h1>
+<!-- HERO -->
+<div class="hero">
+<h1>ROYAL TASTE</h1>
+<p>Luxury Dining Experience</p>
+<a href="#menu"><button class="btn">View Menu</button></a>
+</div>
 
-<div class="scene">
+<!-- MENU -->
+<div class="menu" id="menu">
 <div class="card">
-<div class="face">
+
+<div class="section">
+<h2>Starter</h2>
 <div class="item">🥔 Smiley Potato</div>
+</div>
+
+<div class="section">
+<h2>Main Course</h2>
 <div class="item">🧈 Paneer Butter Masala</div>
 <div class="item">🥙 Kulcha</div>
 <div class="item">🍚 Jeera Rice</div>
+<div class="item">🥗 Salad</div>
+</div>
+
+<div class="section">
+<h2>Dessert</h2>
 <div class="item">🍫 Chocolate Bliss</div>
+</div>
+
+<div class="section">
+<h2>Drink</h2>
 <div class="item">🌹 Rose Lassi</div>
 </div>
 
-<div class="face back">
-<h2>Royal Taste 👑</h2>
-<p>Hover Again</p>
-</div>
 </div>
 </div>
 
+<!-- GALLERY -->
 <div class="gallery">
-<img src="https://source.unsplash.com/200x200/?paneer" onclick="openPop(this)">
-<img src="https://source.unsplash.com/200x200/?rice" onclick="openPop(this)">
-<img src="https://source.unsplash.com/200x200/?dessert" onclick="openPop(this)">
+<h2>Food Gallery</h2>
+<div class="images">
+<img src="https://source.unsplash.com/300x300/?paneer">
+<img src="https://source.unsplash.com/300x300/?kulcha">
+<img src="https://source.unsplash.com/300x300/?rice">
+<img src="https://source.unsplash.com/300x300/?dessert">
+</div>
 </div>
 
-<div class="popup" id="popup" onclick="closePop()">
-<img id="popimg">
+<!-- BOOKING -->
+<div class="booking">
+<h2>Book Your Table</h2>
+<input placeholder="Your Name">
+<input placeholder="Mobile Number">
+<br>
+<button onclick="alert('Table Booked Successfully!')">Book Now</button>
 </div>
 
-<script>
-document.addEventListener("mousemove",e=>{
-let s=document.createElement("div");
-s.className="spark";
-s.style.left=e.clientX+"px";
-s.style.top=e.clientY+"px";
-document.body.appendChild(s);
-setTimeout(()=>s.remove(),600);
-});
-
-function openPop(img){
-popup.style.display="flex";
-popimg.src=img.src;
-}
-function closePop(){
-popup.style.display="none";
-}
-</script>
+<div class="footer">
+© Royal Taste Restaurant
+</div>
 
 </body>
 </html>
