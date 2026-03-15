@@ -1,0 +1,160 @@
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu Preview</title>
+
+<style>
+body{
+margin:0;
+background:black;
+color:white;
+font-family:Arial;
+text-align:center;
+overflow-x:hidden;
+}
+
+/* FIRE CURSOR */
+.spark{
+position:fixed;
+width:6px;
+height:6px;
+background:orange;
+border-radius:50%;
+pointer-events:none;
+animation:fire .6s linear forwards;
+}
+@keyframes fire{
+to{transform:translateY(-30px) scale(0);opacity:0;}
+}
+
+/* TITLE */
+h1{
+color:gold;
+text-shadow:0 0 20px gold;
+margin-top:30px;
+}
+
+/* 3D CARD */
+.scene{
+width:260px;
+height:340px;
+margin:40px auto;
+perspective:900px;
+}
+.card{
+width:100%;
+height:100%;
+position:relative;
+transform-style:preserve-3d;
+transition:1s;
+}
+.card:hover{
+transform:rotateY(180deg);
+}
+.face{
+position:absolute;
+width:100%;
+height:100%;
+backface-visibility:hidden;
+border-radius:20px;
+background:rgba(255,255,255,.08);
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+box-shadow:0 0 20px gold;
+}
+.back{transform:rotateY(180deg);}
+
+/* ITEMS */
+.item{margin:6px;font-size:18px;}
+
+/* GALLERY */
+.gallery img{
+width:90px;
+margin:6px;
+border-radius:10px;
+cursor:pointer;
+transition:.3s;
+}
+.gallery img:hover{
+transform:scale(1.1);
+box-shadow:0 0 15px gold;
+}
+
+/* POPUP */
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.9);
+display:none;
+justify-content:center;
+align-items:center;
+}
+.popup img{
+width:70%;
+border-radius:15px;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>✨ ROYAL MENU PREVIEW ✨</h1>
+
+<div class="scene">
+<div class="card">
+<div class="face">
+<div class="item">🥔 Smiley Potato</div>
+<div class="item">🧈 Paneer Butter Masala</div>
+<div class="item">🥙 Kulcha</div>
+<div class="item">🍚 Jeera Rice</div>
+<div class="item">🍫 Chocolate Bliss</div>
+<div class="item">🌹 Rose Lassi</div>
+</div>
+
+<div class="face back">
+<h2>Royal Taste 👑</h2>
+<p>Hover Again</p>
+</div>
+</div>
+</div>
+
+<div class="gallery">
+<img src="https://source.unsplash.com/200x200/?paneer" onclick="openPop(this)">
+<img src="https://source.unsplash.com/200x200/?rice" onclick="openPop(this)">
+<img src="https://source.unsplash.com/200x200/?dessert" onclick="openPop(this)">
+</div>
+
+<div class="popup" id="popup" onclick="closePop()">
+<img id="popimg">
+</div>
+
+<script>
+document.addEventListener("mousemove",e=>{
+let s=document.createElement("div");
+s.className="spark";
+s.style.left=e.clientX+"px";
+s.style.top=e.clientY+"px";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),600);
+});
+
+function openPop(img){
+popup.style.display="flex";
+popimg.src=img.src;
+}
+function closePop(){
+popup.style.display="none";
+}
+</script>
+
+</body>
+</html>
+```
